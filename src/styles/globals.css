@@ -1,0 +1,309 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============ 设计 token（Tailwind v4 CSS-first） ============ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-active-foreground: var(--sidebar-active-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+/* ============ 浅色（light 主题基准） ============ */
+:root {
+  --radius: 12px;
+  --background: #f5f7fa;
+  --foreground: #1f2329;
+  --card: #ffffff;
+  --card-foreground: #1f2329;
+  --popover: #ffffff;
+  --popover-foreground: #1f2329;
+  --primary: #409eff;
+  --primary-foreground: #ffffff;
+  --primary-soft: #ecf5ff;
+  --secondary: #f0f2f5;
+  --secondary-foreground: #374151;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #ecf5ff;
+  --accent-foreground: #409eff;
+  --destructive: #f56c6c;
+  --destructive-foreground: #ffffff;
+  --success: #67c23a;
+  --warning: #e6a23c;
+  --border: #e4e7ed;
+  --input: #dcdfe6;
+  --ring: #409eff;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #4b5563;
+  --sidebar-active: #ecf5ff;
+  --sidebar-active-foreground: #409eff;
+  --glass: rgba(255, 255, 255, 0.9);
+  --hairline: rgba(0, 0, 0, 0.06);
+}
+
+/* ============ 夜间外观（所有主题统一深灰阶） ============ */
+.dark {
+  --background: #141414;
+  --foreground: rgba(255, 255, 255, 0.87);
+  --card: #1d1e1f;
+  --card-foreground: rgba(255, 255, 255, 0.87);
+  --popover: #262727;
+  --popover-foreground: rgba(255, 255, 255, 0.87);
+  --primary: #409eff;
+  --primary-foreground: #ffffff;
+  --primary-soft: rgba(64, 158, 255, 0.16);
+  --secondary: #2b2c2e;
+  --secondary-foreground: rgba(255, 255, 255, 0.8);
+  --muted: #262727;
+  --muted-foreground: rgba(255, 255, 255, 0.55);
+  --accent: rgba(64, 158, 255, 0.16);
+  --accent-foreground: #79bbff;
+  --destructive: #f56c6c;
+  --destructive-foreground: #ffffff;
+  --success: #73d13d;
+  --warning: #e6a23c;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #409eff;
+  --sidebar: #18181b;
+  --sidebar-foreground: rgba(255, 255, 255, 0.65);
+  --sidebar-active: rgba(64, 158, 255, 0.18);
+  --sidebar-active-foreground: #79bbff;
+  --glass: rgba(35, 36, 38, 0.9);
+  --hairline: rgba(255, 255, 255, 0.08);
+}
+
+/* ============ 配色主题（与外观正交） ============ */
+.theme-blue {
+  --primary: #1a73e8;
+  --ring: #1a73e8;
+  --accent: #eaf3fb;
+  --accent-foreground: #1a73e8;
+  --primary-soft: #eaf3fb;
+  --sidebar-active: #eaf3fb;
+  --sidebar-active-foreground: #1a73e8;
+  --background: #f0f5ff;
+}
+.theme-green {
+  --primary: #2e7d32;
+  --ring: #2e7d32;
+  --accent: #e9efe2;
+  --accent-foreground: #2e7d32;
+  --primary-soft: #e9efe2;
+  --sidebar-active: #e9efe2;
+  --sidebar-active-foreground: #2e7d32;
+  --background: #f1f8f1;
+}
+.theme-purple {
+  --primary: #7c3aed;
+  --ring: #7c3aed;
+  --accent: #f3e8fe;
+  --accent-foreground: #7c3aed;
+  --primary-soft: #f3e8fe;
+  --sidebar-active: #f3e8fe;
+  --sidebar-active-foreground: #7c3aed;
+  --background: #f5f0fb;
+}
+
+/* ============ macOS 主题（Tahoe Liquid Glass · 系统蓝） ============ */
+html.theme-macos {
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+
+  --primary: #007aff;
+  --primary-foreground: #ffffff;
+  --primary-soft: #e6f2ff;
+  --success: #34c759;
+  --warning: #ff9f0a;
+  --destructive: #ff3b30;
+  --ring: #007aff;
+  --radius: 16px;
+  --accent: #e6f2ff;
+  --accent-foreground: #007aff;
+  --sidebar-active: rgba(0, 122, 255, 0.16);
+  --sidebar-active-foreground: #004085;
+  --glass: rgba(255, 255, 255, 0.72);
+  --hairline: rgba(0, 0, 0, 0.07);
+
+  /* 前景文字：Apple HIG 透明灰阶 */
+  --foreground: rgba(0, 0, 0, 0.85);
+  --card-foreground: rgba(0, 0, 0, 0.85);
+  --muted-foreground: rgba(0, 0, 0, 0.5);
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.1);
+}
+
+/* Aurora 渐变壁纸 */
+html.theme-macos body {
+  background-image:
+    radial-gradient(52rem 34rem at 8% -6%, rgba(120, 170, 255, 0.5), transparent 60%),
+    radial-gradient(46rem 32rem at 92% 12%, rgba(255, 190, 230, 0.42), transparent 62%),
+    radial-gradient(50rem 36rem at 70% 105%, rgba(160, 230, 220, 0.4), transparent 60%),
+    radial-gradient(40rem 28rem at 22% 88%, rgba(255, 220, 170, 0.35), transparent 62%),
+    linear-gradient(120deg, #eef3fb 0%, #f3eef8 45%, #eef6f6 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.01em;
+}
+html.theme-macos ::selection {
+  background: rgba(0, 122, 255, 0.22);
+}
+
+/* 玻璃表面：卡片 / 顶栏 / 侧栏 */
+html.theme-macos .glass-surface {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.52) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+html.theme-macos .app-topbar {
+  background: linear-gradient(180deg, rgba(250, 250, 252, 0.78) 0%, rgba(246, 246, 250, 0.7) 100%);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 6px 24px rgba(0, 0, 0, 0.06);
+}
+html.theme-macos .app-sidebar {
+  background: rgba(246, 246, 250, 0.72);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+/* macOS 夜间：深色 Liquid Glass */
+html.theme-macos.dark {
+  --primary: #0a84ff;
+  --primary-soft: rgba(10, 132, 255, 0.18);
+  --success: #30d158;
+  --destructive: #ff453a;
+  --ring: #0a84ff;
+  --accent: rgba(10, 132, 255, 0.18);
+  --accent-foreground: #64b5ff;
+  --sidebar-active: rgba(10, 132, 255, 0.32);
+  --sidebar-active-foreground: #d6eaff;
+  --glass: rgba(90, 90, 105, 0.32);
+  --hairline: rgba(255, 255, 255, 0.1);
+
+  --foreground: rgba(255, 255, 255, 0.87);
+  --card-foreground: rgba(255, 255, 255, 0.87);
+  --muted-foreground: rgba(255, 255, 255, 0.55);
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.14);
+}
+html.theme-macos.dark body {
+  background-image:
+    radial-gradient(52rem 34rem at 8% -6%, rgba(30, 80, 180, 0.45), transparent 60%),
+    radial-gradient(46rem 32rem at 92% 12%, rgba(140, 60, 160, 0.35), transparent 62%),
+    radial-gradient(50rem 36rem at 70% 105%, rgba(20, 110, 120, 0.32), transparent 60%),
+    radial-gradient(40rem 28rem at 22% 88%, rgba(150, 90, 40, 0.25), transparent 62%),
+    linear-gradient(120deg, #15161c 0%, #191622 45%, #14191d 100%);
+  background-attachment: fixed;
+}
+html.theme-macos.dark ::selection {
+  background: rgba(10, 132, 255, 0.35);
+}
+html.theme-macos.dark .glass-surface {
+  background: linear-gradient(135deg, rgba(90, 90, 105, 0.38) 0%, rgba(58, 58, 70, 0.28) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+html.theme-macos.dark .app-topbar {
+  background: linear-gradient(180deg, rgba(42, 42, 50, 0.62) 0%, rgba(36, 36, 44, 0.55) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 6px 24px rgba(0, 0, 0, 0.35);
+}
+html.theme-macos.dark .app-sidebar {
+  background: rgba(34, 34, 42, 0.6);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 非 macOS 主题下 glass-surface 退化为普通卡片 */
+.glass-surface {
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+/* ============ 紧凑模式 ============ */
+html.compact-mode {
+  font-size: 13.5px;
+}
+html.compact-mode .glass-surface {
+  padding: 12px;
+}
+
+/* ============ 基础层 ============ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    font-family: var(--font-sans, ui-sans-serif, system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif);
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--muted-foreground) 30%, transparent);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--muted-foreground) 50%, transparent);
+  }
+}
+
+/* 页面转场 */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-in 240ms cubic-bezier(0.32, 0.72, 0, 1);
+}
